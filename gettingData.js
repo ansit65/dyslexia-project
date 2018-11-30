@@ -5,7 +5,12 @@ function draw() {
   var output = layer("output");
   clear(output);
 
+  margins(20);
   canvasMode(MARGIN);
+  function goldenRatio (myValue){
+  	var goldenShort = myValue/2.618;
+  	var goldenLong = (myValue/2.618)*1.628;
+  };
 
   var urlDaria = "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=&search=dyslexia";
 	 // wikiData[0]: array of single letters: d y s l e x i a ;
@@ -36,12 +41,19 @@ function draw() {
  var myTextFrame = text(myText, 0, 0, width, height);
 
  var allLetters = characters(myTextFrame);
+ var allWords = words(myTextFrame);
 
  for (var l = 0; l < allLetters.length; l++){
  	var actualChar = allLetters[l];
- 	var mySin = sin(l*0.2);
- 	var ptSize = map(mySin, 1, -1, 36, 8);
+
+ 	var myRandom = random(24)
+ 	var mySin1 = sin(l*0.1);
+ 	var mySin2 = sin(l*0.1);
+ 	var ptSize = map(mySin1, 1, -1, 24, myRandom);
+ 	var baseShift = map(mySin2, 1, -1, myRandom, -myRandom);
  	typo(actualChar, "pointSize", ptSize);
+ 	typo(actualChar, "baselineShift", ptSize);
  }
+
 
 } 
